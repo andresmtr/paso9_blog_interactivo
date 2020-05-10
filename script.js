@@ -96,10 +96,30 @@ const preguntas = [
 function mostrarTest(){
   const preguntaYrespuestas = [];
 
-  preguntas.forEach((preguntalActua, numeroDePreguntal) => {
+  preguntas.forEach((preguntalActual, numeroDePregunta) => {
       const respuestas = [];
+      for (letraRespuesta in preguntalActual.respuestas){
+        respuestas.push(
+          '<label>
+            <input type= "radio" name= "${numeroDePregunta}" value = "${letraRespuesta}">
+            ${letraRespuesta} : ${preguntalActual.respuestas[letraRespuesta]}
+
+
+          </label>'
+
+        );
+      }
+      preguntaYrespuestas.push(
+        '<div class = "cuestion"> ${preguntalActual.pregunta}</div>'
+        '<div class = "respuestas">${respuestas.join('')}</div>'
       
-  })
+      );
+      
+  });
+
+  contenedor.innerHTML = preguntaYrespuestas.join('');
 
 
 }
+
+mostrarTest();
